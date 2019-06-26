@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, ListView } from 'react-native'
 import { connect } from 'react-redux'
+import { Metrics, Colors } from '../../../../App/Themes';
 
 // Styles
-import styles from './Styles/RowExampleStyle'
+//import styles from './Styles/RowExampleStyle'
 
 class RowExample extends Component {
   constructor (props) {
@@ -117,4 +118,36 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+export default StyleSheet.create({
+  container:{
+    flex: 1,
+    backgroundColor: Colors.background
+  },
+  row:{
+    width: 100,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: Metrics.baseMargin,
+    backgroundColor: Colors.fire,
+    borderRadius: Metrics.smallMargin
+  },
+  boldLabel: {
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    color: Colors.snow,
+    textAlign: 'center',
+    marginBottom: Metrics.smallMargin
+  },
+  label: {
+    alignSelf: 'center',
+    color: Colors.snow,
+    textAlign: 'center'
+  },
+  listContent: {
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  }
+})
 export default connect(mapStateToProps, mapDispatchToProps)(RowExample)
