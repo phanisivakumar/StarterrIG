@@ -10,7 +10,11 @@ export default class LaunchScreen extends Component {
     super(props);
 
     setTimeout(() => {
-      this.props.navigation.navigate("CreateAccountStack");
+      if (Math.floor(Math.random() * Math.floor(9)) % 2 === 0) {
+        this.props.navigation.navigate("CreateAccountStack");
+      } else {
+        this.props.navigation.navigate("AuthStack");
+      }
     }, 3000);
   }
 
