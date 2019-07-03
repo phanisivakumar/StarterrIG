@@ -6,6 +6,14 @@ import { Images } from "../Themes";
 import styles from "./Styles/LaunchScreenStyles";
 
 export default class LaunchScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    setTimeout(() => {
+      this.props.navigation.navigate("AuthStack");
+    }, 3000);
+  }
+
   render() {
     return (
       <View style={styles.mainContainer}>
@@ -24,8 +32,8 @@ export default class LaunchScreen extends Component {
             <Text style={styles.sectionText}>We are glad to see you!</Text>
           </View>
           <Button
-            title="Go to Home"
-            onPress={() => this.props.navigation.navigate("MainScreen")}
+            title="Sign In"
+            onPress={() => this.props.navigation.navigate("AuthStack")}
           />
         </ScrollView>
       </View>
