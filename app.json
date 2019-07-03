@@ -1,4 +1,3 @@
 {
-  "name": "StarterrIG",
-  "displayName": "StarterrIG"
+  "expo": { "name": "StarterrIG", "slug": "StarterrIG", "sdkVersion": "32.0.0" }
 }

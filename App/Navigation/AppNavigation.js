@@ -1,46 +1,34 @@
-import React from 'react';
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import { Ionicons } from 'react-native-vector-icons';
-//import LaunchScreen from '../Containers/LaunchScreen'
-import HomeScreen from '../Containers/Home/HomeScreen';
-import DetailsScreen from '../Containers/Home/DetailsScreen';
-import SettingsScreen from '../Containers/Home/SettingsScreen';
+import React from "react";
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+  createAppContainer
+} from "react-navigation";
+import { Ionicons } from "react-native-vector-icons";
+import LaunchScreen from "../Containers/LaunchScreen";
+import HomeScreen from "../Containers/Home/HomeScreen";
+import DetailsScreen from "../Containers/Home/DetailsScreen";
+import ManageScreen from "../Containers/Manage/ManageScreen";
 
-//import ExampleRowScreen from '../../ignite/Examples/Containers/ignite-andross/RowExample'
+//import ExampleRowScreen from "../../ignite/Examples/Containers/ignite-andross/RowExample";
 
-import styles from './Styles/NavigationStyles'
+import styles from "./Styles/NavigationStyles";
 
 // Manifest of possible screens
 const HomeStack = createStackNavigator({
   Home: { screen: HomeScreen },
-  Details: { screen: DetailsScreen },
+  Details: { screen: DetailsScreen }
 });
 
-const SettingsStack = createStackNavigator({
-  Settings: { screen: SettingsScreen },
-  Details: { screen: DetailsScreen },
+const ManageStack = createStackNavigator({
+  Settings: { screen: ManageScreen },
+  Details: { screen: DetailsScreen }
 });
 
-// const PrimaryNav = createStackNavigator({
-//   LaunchScreen: { screen: LaunchScreen },
-//   HomeScreen: {screen: HomeScreen}//,
-//   //ExampleRowScreen: {screen: ExampleRowScreen}
-// }
-// , {
-//   // Default config for all screens
-//   headerMode: 'none',
-//   initialRouteName: 'HomeScreen',
-//   navigationOptions: {
-//     headerStyle: styles.header
-//   }
-// })
-
-//export default createAppContainer(PrimaryNav)
-
-export default createAppContainer(createBottomTabNavigator(
+const BottomStack = createBottomTabNavigator(
   {
     Home: { screen: HomeStack },
-    Settings: { screen: SettingsStack },
+    Manage: { screen: ManageStack }
   },
   {
     // defaultNavigationOptions: ({ navigation }) => ({
@@ -59,9 +47,25 @@ export default createAppContainer(createBottomTabNavigator(
     //   },
     // }),
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-    },
+      activeTintColor: "tomato",
+      inactiveTintColor: "gray"
+    }
   }
-))
+);
 
+const PrimaryNav = createStackNavigator(
+  {
+    LaunchScreen: { screen: LaunchScreen },
+    MainScreen: { screen: BottomStack }
+  },
+  {
+    // Default config for all screens
+    headerMode: "none",
+    initialRouteName: "LaunchScreen",
+    navigationOptions: {
+      headerStyle: styles.header
+    }
+  }
+);
+
+export default createAppContainer(PrimaryNav);
