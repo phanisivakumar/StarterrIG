@@ -10,7 +10,7 @@ export default class LaunchScreen extends Component {
     super(props);
 
     setTimeout(() => {
-      this.props.navigation.navigate("AuthStack");
+      this.props.navigation.navigate("CreateAccountStack");
     }, 3000);
   }
 
@@ -31,10 +31,14 @@ export default class LaunchScreen extends Component {
             <Image source={Images.ready} />
             <Text style={styles.sectionText}>We are glad to see you!</Text>
           </View>
-          <Button
+          {/* <Button
             title="Sign In"
             onPress={() => this.props.navigation.navigate("AuthStack")}
           />
+          <Button
+            title="Create Account"
+            onPress={() => this.props.navigation.navigate("CreateAccountStack")}
+          /> */}
         </ScrollView>
       </View>
     );

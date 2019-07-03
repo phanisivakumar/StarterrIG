@@ -10,7 +10,8 @@ import HomeScreen from "../Containers/Home/HomeScreen";
 import DetailsScreen from "../Containers/Home/DetailsScreen";
 import ManageScreen from "../Containers/Manage/ManageScreen";
 import SignInScreen from "../Containers/Auth/SignInScreen";
-
+import CreateAccountScreen from "../Containers/Auth/CreateAccountScreen";
+import ResetPasswordScreen from "../Containers/Auth/ResetPasswordScreen";
 //import ExampleRowScreen from "../../ignite/Examples/Containers/ignite-andross/RowExample";
 
 import styles from "./Styles/NavigationStyles";
@@ -55,14 +56,19 @@ const BottomStack = createBottomTabNavigator(
 );
 
 const AuthStack = createStackNavigator({
-  SignIn: { screen: SignInScreen }
+  SignIn: { screen: SignInScreen },
+  ResetPassword: { screen: ResetPasswordScreen }
+});
+
+const CreateAccountStack = createStackNavigator({
+  CreateAccount: { screen: CreateAccountScreen }
 });
 
 const PrimaryNav = createStackNavigator(
   {
-    //MainScreen: { screen: MainScreen },
     LaunchScreen: { screen: LaunchScreen },
     AuthStack: { screen: AuthStack },
+    CreateAccountStack: { screen: CreateAccountStack },
     BottomStack: { screen: BottomStack }
   },
   {
