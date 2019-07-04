@@ -11,8 +11,12 @@ export default class SignInScreen extends React.Component {
           onPress={() => this.props.navigation.navigate("ResetPassword")}
         />
         <Button
+          title="Create Account"
+          onPress={() => this.props.navigation.navigate("CreateAccountStack")}
+        />
+        <Button
           title="Go to Home"
-          onPress={() => this.props.navigation.navigate("BottomStack")}
+          onPress={() => this.props.navigation.navigate("DrawerStack")}
         />
       </View>
     );

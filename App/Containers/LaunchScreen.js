@@ -15,7 +15,7 @@ export default class LaunchScreen extends Component {
       } else {
         this.props.navigation.navigate("AuthStack");
       }
-    }, 3000);
+    }, 2000);
   }
 
   render() {

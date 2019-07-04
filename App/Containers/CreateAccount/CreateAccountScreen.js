@@ -7,6 +7,10 @@ export default class CreateAccountScreen extends React.Component {
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text>Create Account!</Text>
         <Button
+          title="Send OTP"
+          onPress={() => this.props.navigation.navigate("OTP")}
+        />
+        <Button
           title="Go to Sign In"
           onPress={() => this.props.navigation.navigate("AuthStack")}
         />
