@@ -3,7 +3,8 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
   createAppContainer,
-  createDrawerNavigator
+  createDrawerNavigator,
+  createSwitchNavigator
 } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 // import styles from "./Styles/NavigationStyles";
@@ -16,10 +17,12 @@ import ResetPasswordScreen from "../Containers/Auth/ResetPasswordScreen";
 import CustomDrawerComponent from "../Components/CustomDrawer";
 import CreateAccountScreen from "../Containers/CreateAccount/CreateAccountScreen";
 import OTPScreen from "../Containers/CreateAccount/OTPScreen";
+import ProfileScreen from "../Containers/Profile/ProfileScreen";
 import PrivacyPolicyScreen from "../Containers/Policy/PrivacyPolicyScreen";
 import TermsConditionsScreen from "../Containers/Policy/TermsConditionsScreen";
-import ProfilePicture from "../Components/ProfilePicture";
+import DisplayPicture from "../Components/DisplayPicture";
 import MenuButton from "../Components/MenuButton";
+import HomeButton from "../Components/HomeButton";
 import colors from "../Themes/Colors";
 
 // Manifest of possible screens
@@ -29,7 +32,7 @@ const HomeStack = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: "Posters",
       headerLeft: <MenuButton navigationProps={navigation} />,
-      headerRight: <ProfilePicture />,
+      headerRight: <DisplayPicture navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: colors.banner
       },
@@ -45,7 +48,7 @@ const ManageStack = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: "Manage",
       headerLeft: <MenuButton navigationProps={navigation} />,
-      headerRight: <ProfilePicture />,
+      headerRight: <DisplayPicture navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: colors.banner
       },
@@ -53,6 +56,21 @@ const ManageStack = createStackNavigator({
     })
   },
   Details: { screen: DetailsScreen }
+});
+
+const ProfileStack = createStackNavigator({
+  Manage: {
+    screen: ProfileScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "Profile",
+      headerLeft: <MenuButton navigationProps={navigation} />,
+      headerRight: <HomeButton navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    })
+  }
 });
 
 const BottomStack = createBottomTabNavigator(
@@ -102,7 +120,7 @@ const PrivacyPolicyStack = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: "Privacy Policy",
       headerLeft: <MenuButton navigationProps={navigation} />,
-      headerRight: <ProfilePicture />,
+      headerRight: <HomeButton navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: colors.banner
       },
@@ -117,7 +135,7 @@ const TermsConditionsStack = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: "Terms & Conditions",
       headerLeft: <MenuButton navigationProps={navigation} />,
-      headerRight: <ProfilePicture />,
+      headerRight: <HomeButton navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: colors.banner
       },
@@ -130,6 +148,7 @@ const TermsConditionsStack = createStackNavigator({
 const DrawerStack = createDrawerNavigator(
   {
     Posters: { screen: BottomStack },
+    Profile: { screen: ProfileStack },
     "Privacy Policy": { screen: PrivacyPolicyStack },
     "Terms & Conditions": { screen: TermsConditionsStack }
   },
@@ -139,7 +158,7 @@ const DrawerStack = createDrawerNavigator(
   }
 );
 
-const PrimaryNav = createStackNavigator(
+const PrimaryNav = createSwitchNavigator(
   {
     LaunchScreen: { screen: LaunchScreen },
     AuthStack: { screen: AuthStack },
