@@ -14,8 +14,11 @@ import DetailsScreen from "../Containers/Home/DetailsScreen";
 import ManageScreen from "../Containers/Manage/ManageScreen";
 import SignInScreen from "../Containers/Auth/SignInScreen";
 import ResetPasswordScreen from "../Containers/Auth/ResetPasswordScreen";
+import PasscodeScreen from "../Containers/Auth/PasscodeScreen";
+import PasscodeConfirmScreen from "../Containers/Auth/PasscodeConfirmScreen";
 import CustomDrawerComponent from "../Components/CustomDrawer";
-import CreateAccountScreen from "../Containers/CreateAccount/CreateAccountScreen";
+import PhoneSignupScreen from "../Containers/CreateAccount/PhoneSignupScreen";
+import EmailSignupScreen from "../Containers/CreateAccount/EmailSignupScreen";
 import OTPScreen from "../Containers/CreateAccount/OTPScreen";
 import ProfileScreen from "../Containers/Profile/ProfileScreen";
 import PrivacyPolicyScreen from "../Containers/Policy/PrivacyPolicyScreen";
@@ -26,52 +29,74 @@ import HomeButton from "../Components/HomeButton";
 import colors from "../Themes/Colors";
 
 // Manifest of possible screens
-const HomeStack = createStackNavigator({
-  Posters: {
-    screen: HomeScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: "Posters",
-      headerLeft: <MenuButton navigationProps={navigation} />,
-      headerRight: <DisplayPicture navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: colors.banner
-      },
-      headerTintColor: colors.snow
-    })
+const HomeStack = createStackNavigator(
+  {
+    Posters: {
+      screen: HomeScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Posters",
+        headerLeft: <MenuButton navigationProps={navigation} />,
+        headerRight: <DisplayPicture navigationProps={navigation} />
+      })
+    },
+    Details: {
+      screen: DetailsScreen
+    }
   },
-  Details: { screen: DetailsScreen }
-});
-
-const ManageStack = createStackNavigator({
-  Manage: {
-    screen: ManageScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: "Manage",
-      headerLeft: <MenuButton navigationProps={navigation} />,
-      headerRight: <DisplayPicture navigationProps={navigation} />,
+  {
+    defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: colors.banner
       },
       headerTintColor: colors.snow
-    })
-  },
-  Details: { screen: DetailsScreen }
-});
-
-const ProfileStack = createStackNavigator({
-  Manage: {
-    screen: ProfileScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: "Profile",
-      headerLeft: <MenuButton navigationProps={navigation} />,
-      headerRight: <HomeButton navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: colors.banner
-      },
-      headerTintColor: colors.snow
-    })
+    }
   }
-});
+);
+
+const ManageStack = createStackNavigator(
+  {
+    Manage: {
+      screen: ManageScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Manage",
+        headerLeft: <MenuButton navigationProps={navigation} />,
+        headerRight: <DisplayPicture navigationProps={navigation} />
+      })
+    },
+    Details: {
+      screen: DetailsScreen
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
+const ProfileStack = createStackNavigator(
+  {
+    Manage: {
+      screen: ProfileScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Profile",
+        headerLeft: <MenuButton navigationProps={navigation} />,
+        headerRight: <HomeButton navigationProps={navigation} />
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
 
 const BottomStack = createBottomTabNavigator(
   {
@@ -104,45 +129,141 @@ const BottomStack = createBottomTabNavigator(
   }
 );
 
-const AuthStack = createStackNavigator({
-  SignIn: { screen: SignInScreen },
-  ResetPassword: { screen: ResetPasswordScreen }
-});
-
-const CreateAccountStack = createStackNavigator({
-  CreateAccount: { screen: CreateAccountScreen },
-  OTP: { screen: OTPScreen }
-});
-
-const PrivacyPolicyStack = createStackNavigator({
-  PrivacyPolicy: {
-    screen: PrivacyPolicyScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: "Privacy Policy",
-      headerLeft: <MenuButton navigationProps={navigation} />,
-      headerRight: <HomeButton navigationProps={navigation} />,
+const AuthStack = createStackNavigator(
+  {
+    SignIn: {
+      screen: SignInScreen,
+      navigationOptions: {
+        title: "Sign In"
+      }
+    },
+    ResetPassword: {
+      screen: ResetPasswordScreen,
+      navigationOptions: {
+        title: "Reset Password"
+      }
+    }
+  },
+  {
+    defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: colors.banner
       },
       headerTintColor: colors.snow
-    })
+    }
   }
-});
+);
 
-const TermsConditionsStack = createStackNavigator({
-  TermsConditions: {
-    screen: TermsConditionsScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: "Terms & Conditions",
-      headerLeft: <MenuButton navigationProps={navigation} />,
-      headerRight: <HomeButton navigationProps={navigation} />,
+const PasscodeStack = createStackNavigator(
+  {
+    Passcode: {
+      screen: PasscodeScreen,
+      navigationOptions: {
+        title: "Set Passcode"
+      }
+    },
+    PasscodeConfirm: {
+      screen: PasscodeConfirmScreen,
+      navigationOptions: {
+        title: "Confirm Passcode"
+      }
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerMode: "none",
       headerStyle: {
         backgroundColor: colors.banner
       },
       headerTintColor: colors.snow
-    })
+    }
   }
-});
+);
+
+const CreateAccountStack = createStackNavigator(
+  {
+    PhoneSignup: {
+      screen: PhoneSignupScreen,
+      navigationOptions: {
+        title: "Verify Phone Number"
+      }
+    },
+    OTP: {
+      screen: OTPScreen,
+      navigationOptions: {
+        title: "One Time Password"
+      }
+    },
+    Passcode: {
+      screen: PasscodeScreen,
+      navigationOptions: {
+        title: "Set Passcode"
+      }
+    },
+    PasscodeConfirm: {
+      screen: PasscodeConfirmScreen,
+      navigationOptions: {
+        title: "Confirm Passcode"
+      }
+    },
+    EmailSignup: {
+      screen: EmailSignupScreen,
+      navigationOptions: {
+        title: "Create Account"
+      }
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
+const PrivacyPolicyStack = createStackNavigator(
+  {
+    PrivacyPolicy: {
+      screen: PrivacyPolicyScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Privacy Policy",
+        headerLeft: <MenuButton navigationProps={navigation} />,
+        headerRight: <HomeButton navigationProps={navigation} />
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
+const TermsConditionsStack = createStackNavigator(
+  {
+    TermsConditions: {
+      screen: TermsConditionsScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Terms & Conditions",
+        headerLeft: <MenuButton navigationProps={navigation} />,
+        headerRight: <HomeButton navigationProps={navigation} />
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
 
 // drawer stack
 const DrawerStack = createDrawerNavigator(
