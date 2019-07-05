@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 import {
   createStackNavigator,
   createBottomTabNavigator,
@@ -7,7 +6,7 @@ import {
   createDrawerNavigator
 } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
-import styles from "./Styles/NavigationStyles";
+// import styles from "./Styles/NavigationStyles";
 import LaunchScreen from "../Containers/LaunchScreen";
 import HomeScreen from "../Containers/Home/HomeScreen";
 import DetailsScreen from "../Containers/Home/DetailsScreen";
@@ -19,29 +18,54 @@ import CreateAccountScreen from "../Containers/CreateAccount/CreateAccountScreen
 import OTPScreen from "../Containers/CreateAccount/OTPScreen";
 import PrivacyPolicyScreen from "../Containers/Policy/PrivacyPolicyScreen";
 import TermsConditionsScreen from "../Containers/Policy/TermsConditionsScreen";
+import ProfilePicture from "../Components/ProfilePicture";
+import MenuButton from "../Components/MenuButton";
+import colors from "../Themes/Colors";
 
 // Manifest of possible screens
 const HomeStack = createStackNavigator({
-  Home: { screen: HomeScreen },
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "Posters",
+      headerLeft: <MenuButton navigationProps={navigation} />,
+      headerRight: <ProfilePicture />,
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    })
+  },
   Details: { screen: DetailsScreen }
 });
 
 const ManageStack = createStackNavigator({
-  Manage: { screen: ManageScreen },
+  Manage: {
+    screen: ManageScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "Manage",
+      headerLeft: <MenuButton navigationProps={navigation} />,
+      headerRight: <ProfilePicture />,
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    })
+  },
   Details: { screen: DetailsScreen }
 });
 
 const BottomStack = createBottomTabNavigator(
   {
-    List: { screen: HomeStack },
+    Posters: { screen: HomeStack },
     Manage: { screen: ManageStack }
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
+      tabBarIcon: ({ tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === "List") {
+        if (routeName === "Posters") {
           iconName = "ios-list";
         } else if (routeName === "Manage") {
           iconName = "ios-checkbox-outline";
@@ -53,9 +77,11 @@ const BottomStack = createBottomTabNavigator(
       }
     }),
     tabBarOptions: {
-      activeTintColor: "tomato",
-      inactiveTintColor: "gray",
-      showLabel: false
+      style: {
+        borderTopColor: "transparent"
+      },
+      activeTintColor: colors.banner,
+      inactiveTintColor: colors.steel
     }
   }
 );
@@ -70,34 +96,48 @@ const CreateAccountStack = createStackNavigator({
   OTP: { screen: OTPScreen }
 });
 
+const PrivacyPolicyStack = createStackNavigator({
+  PrivacyPolicy: {
+    screen: PrivacyPolicyScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "Privacy Policy",
+      headerLeft: <MenuButton navigationProps={navigation} />,
+      headerRight: <ProfilePicture />,
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    })
+  }
+});
+
+const TermsConditionsStack = createStackNavigator({
+  TermsConditions: {
+    screen: TermsConditionsScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "Terms & Conditions",
+      headerLeft: <MenuButton navigationProps={navigation} />,
+      headerRight: <ProfilePicture />,
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    })
+  }
+});
+
 // drawer stack
 const DrawerStack = createDrawerNavigator(
   {
     Home: { screen: BottomStack },
-    "Privacy Policy": { screen: PrivacyPolicyScreen },
-    "Terms & Conditions": { screen: TermsConditionsScreen }
+    "Privacy Policy": { screen: PrivacyPolicyStack },
+    "Terms & Conditions": { screen: TermsConditionsStack }
   },
   {
     contentComponent: CustomDrawerComponent,
-    contentOptions: { activeTintColor: "tomato" }
+    contentOptions: { activeTintColor: colors.banner }
   }
 );
-
-// const DrawerNav = createStackNavigator(
-//   {
-//     DrawerStack: { screen: DrawerStack }
-//   },
-//   {
-//     headerMode: "none"
-//     // navigationOptions: ({ navigation }) => ({
-//     //   headerStyle: { backgroundColor: "green" },
-//     //   title: "Logged In to your app!",
-//     //   headerLeft: (
-//     //     <Text onPress={() => navigation.navigate("DrawerOpen")}>Menu</Text>
-//     //   )
-//     // })
-//   }
-// );
 
 const PrimaryNav = createStackNavigator(
   {
@@ -105,21 +145,11 @@ const PrimaryNav = createStackNavigator(
     AuthStack: { screen: AuthStack },
     CreateAccountStack: { screen: CreateAccountStack },
     DrawerStack: { screen: DrawerStack }
-    // PrivacyPolicy: { screen: PrivacyPolicyScreen },
-    // TermsConditions: { screen: TermsConditionsScreen }
   },
   {
     // Default config for all screens
     headerMode: "none",
-    initialRouteName: "LaunchScreen",
-    navigationOptions: {
-      headerStyle: styles.header,
-      headerLeft: (
-        <Text onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-          Menu
-        </Text>
-      )
-    }
+    initialRouteName: "LaunchScreen"
   }
 );
 
