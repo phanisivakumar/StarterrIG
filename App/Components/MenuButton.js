@@ -17,7 +17,7 @@ class MenuButton extends React.Component {
             name="ios-menu"
             size={40}
             color={colors.drawer}
-            style={{ width: 25, marginLeft: 10 }}
+            style={{ width: 25, marginLeft: 10, marginBottom: -6 }}
           />
         </TouchableOpacity>
       </View>

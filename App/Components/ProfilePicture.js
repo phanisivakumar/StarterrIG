@@ -13,7 +13,8 @@ export default class ProfilePicture extends Component {
             width: 40,
             height: 40,
             borderRadius: 40 / 2,
-            marginLeft: 15
+            marginRight: 10,
+            marginBottom: 6
           }}
         />
       </View>

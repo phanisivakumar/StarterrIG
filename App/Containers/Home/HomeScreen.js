@@ -5,7 +5,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Home!</Text>
+        <Text>Posters!</Text>
         <Button
           title="Go to Manage"
           onPress={() => this.props.navigation.navigate("Manage")}

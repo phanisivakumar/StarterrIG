@@ -24,7 +24,7 @@ import colors from "../Themes/Colors";
 
 // Manifest of possible screens
 const HomeStack = createStackNavigator({
-  Home: {
+  Posters: {
     screen: HomeScreen,
     navigationOptions: ({ navigation }) => ({
       title: "Posters",
@@ -129,7 +129,7 @@ const TermsConditionsStack = createStackNavigator({
 // drawer stack
 const DrawerStack = createDrawerNavigator(
   {
-    Home: { screen: BottomStack },
+    Posters: { screen: BottomStack },
     "Privacy Policy": { screen: PrivacyPolicyStack },
     "Terms & Conditions": { screen: TermsConditionsStack }
   },

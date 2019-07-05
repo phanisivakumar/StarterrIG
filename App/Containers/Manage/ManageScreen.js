@@ -7,8 +7,8 @@ export default class ManageScreen extends React.Component {
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text>Manage!</Text>
         <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate("Home")}
+          title="Go to Posters"
+          onPress={() => this.props.navigation.navigate("Posters")}
         />
         <Button
           title="Go to Details"
