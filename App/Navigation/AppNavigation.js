@@ -4,10 +4,9 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
   createAppContainer,
-  createDrawerNavigator,
-  createSwitchNavigator
+  createDrawerNavigator
 } from "react-navigation";
-import { Ionicons } from "react-native-vector-icons";
+import Icon from "react-native-vector-icons/Ionicons";
 import styles from "./Styles/NavigationStyles";
 import LaunchScreen from "../Containers/LaunchScreen";
 import HomeScreen from "../Containers/Home/HomeScreen";
@@ -34,28 +33,29 @@ const ManageStack = createStackNavigator({
 
 const BottomStack = createBottomTabNavigator(
   {
-    Home: { screen: HomeStack },
+    List: { screen: HomeStack },
     Manage: { screen: ManageStack }
   },
   {
-    navigationOptions: {
+    defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = this.props.navigation.state;
+        const { routeName } = navigation.state;
         let iconName;
-        if (routeName === "Home") {
-          iconName = `ios-information-circle${focused ? "" : "-outline"}`;
+        if (routeName === "List") {
+          iconName = "ios-list";
         } else if (routeName === "Manage") {
-          iconName = `ios-options${focused ? "" : "-outline"}`;
+          iconName = "ios-checkbox-outline";
         }
 
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
-        return <Ionicons name={iconName} size={25} color={tintColor} />;
+        return <Icon name={iconName} size={35} color={tintColor} />;
       }
-    },
+    }),
     tabBarOptions: {
       activeTintColor: "tomato",
-      inactiveTintColor: "gray"
+      inactiveTintColor: "gray",
+      showLabel: false
     }
   }
 );
