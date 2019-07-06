@@ -8,7 +8,7 @@ export default class PasscodeConfirmScreen extends React.Component {
         <Text>Confirm Passcode!</Text>
         <Button
           title="Save"
-          onPress={() => this.props.navigation.navigate("Posters")}
+          onPress={() => this.props.navigation.navigate("WhoAreYouStack")}
         />
       </View>
     );

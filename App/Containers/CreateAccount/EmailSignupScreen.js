@@ -5,9 +5,11 @@ export default class EmailSignupScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Email Signup!</Text>
+        <Text>Email Address:</Text>
+        <Text>Password:</Text>
+        <Text>Confirm Password:</Text>
         <Button
-          title="Create Account"
+          title="Signup & Verify"
           onPress={() => this.props.navigation.navigate("OTP")}
         />
         <Button

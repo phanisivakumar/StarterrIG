@@ -5,7 +5,11 @@ export default class ResetPasswordScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Reset Password!</Text>
+        <Text>Email Address:</Text>
+        <Button
+          title="Send OTP"
+          onPress={() => this.props.navigation.navigate("OTP")}
+        />
       </View>
     );
   }

@@ -19,10 +19,12 @@ import PasscodeConfirmScreen from "../Containers/Auth/PasscodeConfirmScreen";
 import CustomDrawerComponent from "../Components/CustomDrawer";
 import PhoneSignupScreen from "../Containers/CreateAccount/PhoneSignupScreen";
 import EmailSignupScreen from "../Containers/CreateAccount/EmailSignupScreen";
+import WhoAreYouScreen from "../Containers/CreateAccount/WhoAreYouScreen";
 import OTPScreen from "../Containers/CreateAccount/OTPScreen";
 import ProfileScreen from "../Containers/Profile/ProfileScreen";
 import PrivacyPolicyScreen from "../Containers/Policy/PrivacyPolicyScreen";
 import TermsConditionsScreen from "../Containers/Policy/TermsConditionsScreen";
+import HelpScreen from "../Containers/Policy/HelpScreen";
 import DisplayPicture from "../Components/DisplayPicture";
 import MenuButton from "../Components/MenuButton";
 import HomeButton from "../Components/HomeButton";
@@ -180,12 +182,31 @@ const PasscodeStack = createStackNavigator(
   }
 );
 
+const WhoAreYouStack = createStackNavigator(
+  {
+    WhoAreYou: {
+      screen: WhoAreYouScreen,
+      navigationOptions: {
+        title: "Who are you?"
+      }
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
 const CreateAccountStack = createStackNavigator(
   {
-    PhoneSignup: {
-      screen: PhoneSignupScreen,
+    EmailSignup: {
+      screen: EmailSignupScreen,
       navigationOptions: {
-        title: "Verify Phone Number"
+        title: "Create Account"
       }
     },
     OTP: {
@@ -200,16 +221,16 @@ const CreateAccountStack = createStackNavigator(
         title: "Set Passcode"
       }
     },
-    PasscodeConfirm: {
-      screen: PasscodeConfirmScreen,
+    // PasscodeConfirm: {
+    //   screen: PasscodeConfirmScreen,
+    //   navigationOptions: {
+    //     title: "Confirm Passcode"
+    //   }
+    // },
+    PhoneSignup: {
+      screen: PhoneSignupScreen,
       navigationOptions: {
-        title: "Confirm Passcode"
-      }
-    },
-    EmailSignup: {
-      screen: EmailSignupScreen,
-      navigationOptions: {
-        title: "Create Account"
+        title: "Verify Phone Number"
       }
     }
   },
@@ -265,13 +286,34 @@ const TermsConditionsStack = createStackNavigator(
   }
 );
 
+const HelpStack = createStackNavigator(
+  {
+    Help: {
+      screen: HelpScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Help",
+        headerLeft: <MenuButton navigationProps={navigation} />,
+        headerRight: <HomeButton navigationProps={navigation} />
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
 // drawer stack
 const DrawerStack = createDrawerNavigator(
   {
     Posters: { screen: BottomStack },
     Profile: { screen: ProfileStack },
     "Privacy Policy": { screen: PrivacyPolicyStack },
-    "Terms & Conditions": { screen: TermsConditionsStack }
+    "Terms & Conditions": { screen: TermsConditionsStack },
+    Help: { screen: HelpStack }
   },
   {
     contentComponent: CustomDrawerComponent,
@@ -284,6 +326,7 @@ const PrimaryNav = createSwitchNavigator(
     LaunchScreen: { screen: LaunchScreen },
     AuthStack: { screen: AuthStack },
     CreateAccountStack: { screen: CreateAccountStack },
+    WhoAreYouStack: { screen: WhoAreYouStack },
     DrawerStack: { screen: DrawerStack }
   },
   {
