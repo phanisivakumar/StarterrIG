@@ -1,32 +1,56 @@
 import React from "react";
-import { View, SafeAreaView, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  StyleSheet
+} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { DrawerItems } from "react-navigation";
 import images from "../Themes/Images";
+import ApplicationStyles from "../Themes/ApplicationStyles";
+import Font from "../Themes/Fonts";
 
 const CustomDrawerComponent = props => (
-  <SafeAreaView style={styles.container}>
-    <View style={styles.headerContainer}>
-      <Image source={images.logo} style={styles.headerLogo} />
+  <SafeAreaView style={ApplicationStyles.screen.mainContainer}>
+    <View style={ApplicationStyles.screen.section}>
+      <Image source={images.logo} style={ApplicationStyles.logo} />
+      <Text>Acc# 1HC190706</Text>
+      <Text>2 Credits</Text>
     </View>
     <ScrollView>
       <DrawerItems {...props} />
     </ScrollView>
+    <View style={styles.insideContainer}>
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("PrivacyPolicyStack")}
+      >
+        <Text style={Font.style.description}>Privacy Policy</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("TermsConditionsStack")}
+      >
+        <Text style={Font.style.description}>Terms and Conditions</Text>
+      </TouchableOpacity>
+      <Button
+        style={styles.footer}
+        title="Log Out"
+        onPress={() => props.navigation.navigate("AuthStack")}
+      />
+    </View>
   </SafeAreaView>
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
+  insideContainer: {
+    marginBottom: 40,
+    marginLeft: 15
   },
-  headerContainer: {
-    height: 150,
-    backgroundColor: "white"
-    // alignItems: "center",
-    // justifyContent: "center"
-  },
-  headerLogo: {
-    borderRadius: 60
+  footer: {
+    marginTop: 50
   }
 });
 
@@ -67,7 +91,7 @@ export default CustomDrawerComponent;
 //               onPress={this.navigateToScreen("Home")}
 //             >
 //               Home
-//             </Text>
+//             </TouchableOpacity>
 //           </View>
 //           {/* <View
 //             style={[

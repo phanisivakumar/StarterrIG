@@ -28,6 +28,7 @@ import HelpScreen from "../Containers/Policy/HelpScreen";
 import DisplayPicture from "../Components/DisplayPicture";
 import MenuButton from "../Components/MenuButton";
 import HomeButton from "../Components/HomeButton";
+import CloseWindowButton from "../Components/CloseWindowButton";
 import colors from "../Themes/Colors";
 
 // Manifest of possible screens
@@ -156,31 +157,31 @@ const AuthStack = createStackNavigator(
   }
 );
 
-const PasscodeStack = createStackNavigator(
-  {
-    Passcode: {
-      screen: PasscodeScreen,
-      navigationOptions: {
-        title: "Set Passcode"
-      }
-    },
-    PasscodeConfirm: {
-      screen: PasscodeConfirmScreen,
-      navigationOptions: {
-        title: "Confirm Passcode"
-      }
-    }
-  },
-  {
-    defaultNavigationOptions: {
-      headerMode: "none",
-      headerStyle: {
-        backgroundColor: colors.banner
-      },
-      headerTintColor: colors.snow
-    }
-  }
-);
+// const PasscodeStack = createStackNavigator(
+//   {
+//     Passcode: {
+//       screen: PasscodeScreen,
+//       navigationOptions: {
+//         title: "Set Passcode"
+//       }
+//     },
+//     PasscodeConfirm: {
+//       screen: PasscodeConfirmScreen,
+//       navigationOptions: {
+//         title: "Confirm Passcode"
+//       }
+//     }
+//   },
+//   {
+//     defaultNavigationOptions: {
+//       headerMode: "none",
+//       headerStyle: {
+//         backgroundColor: colors.banner
+//       },
+//       headerTintColor: colors.snow
+//     }
+//   }
+// );
 
 const WhoAreYouStack = createStackNavigator(
   {
@@ -250,8 +251,7 @@ const PrivacyPolicyStack = createStackNavigator(
       screen: PrivacyPolicyScreen,
       navigationOptions: ({ navigation }) => ({
         title: "Privacy Policy",
-        headerLeft: <MenuButton navigationProps={navigation} />,
-        headerRight: <HomeButton navigationProps={navigation} />
+        headerRight: <CloseWindowButton navigationProps={navigation} />
       })
     }
   },
@@ -271,8 +271,7 @@ const TermsConditionsStack = createStackNavigator(
       screen: TermsConditionsScreen,
       navigationOptions: ({ navigation }) => ({
         title: "Terms & Conditions",
-        headerLeft: <MenuButton navigationProps={navigation} />,
-        headerRight: <HomeButton navigationProps={navigation} />
+        headerRight: <CloseWindowButton navigationProps={navigation} />
       })
     }
   },
@@ -298,6 +297,7 @@ const HelpStack = createStackNavigator(
     }
   },
   {
+    initialRouteName: "Help",
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: colors.banner
@@ -311,13 +311,25 @@ const DrawerStack = createDrawerNavigator(
   {
     Posters: { screen: BottomStack },
     Profile: { screen: ProfileStack },
-    "Privacy Policy": { screen: PrivacyPolicyStack },
-    "Terms & Conditions": { screen: TermsConditionsStack },
     Help: { screen: HelpStack }
   },
   {
     contentComponent: CustomDrawerComponent,
     contentOptions: { activeTintColor: colors.banner }
+  }
+);
+
+const MainStack = createStackNavigator(
+  {
+    DrawerStack: {
+      screen: DrawerStack
+    },
+    PrivacyPolicyStack: { screen: PrivacyPolicyStack },
+    TermsConditionsStack: { screen: TermsConditionsStack }
+  },
+  {
+    mode: "modal",
+    headerMode: "none"
   }
 );
 
@@ -327,7 +339,7 @@ const PrimaryNav = createSwitchNavigator(
     AuthStack: { screen: AuthStack },
     CreateAccountStack: { screen: CreateAccountStack },
     WhoAreYouStack: { screen: WhoAreYouStack },
-    DrawerStack: { screen: DrawerStack }
+    MainStack: { screen: MainStack }
   },
   {
     // Default config for all screens
