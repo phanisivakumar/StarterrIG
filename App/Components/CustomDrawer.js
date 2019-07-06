@@ -13,6 +13,7 @@ import { DrawerItems } from "react-navigation";
 import images from "../Themes/Images";
 import ApplicationStyles from "../Themes/ApplicationStyles";
 import Font from "../Themes/Fonts";
+import Color from "../Themes/Colors";
 
 const CustomDrawerComponent = props => (
   <SafeAreaView style={ApplicationStyles.screen.mainContainer}>
@@ -20,6 +21,13 @@ const CustomDrawerComponent = props => (
       <Image source={images.logo} />
       <Text style={ApplicationStyles.darkLabel}># 1HC190706</Text>
       <Text style={ApplicationStyles.darkLabel}>Credits: 2</Text>
+      <View style={ApplicationStyles.groupContainer}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("PlanStack")}
+        >
+          <Text style={[Color.banner, Font.style.underline]}>Basic (Free)</Text>
+        </TouchableOpacity>
+      </View>
     </View>
     <ScrollView>
       <DrawerItems {...props} />

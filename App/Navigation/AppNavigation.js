@@ -15,7 +15,7 @@ import ManageScreen from "../Containers/Manage/ManageScreen";
 import SignInScreen from "../Containers/Auth/SignInScreen";
 import ResetPasswordScreen from "../Containers/Auth/ResetPasswordScreen";
 import PasscodeScreen from "../Containers/Auth/PasscodeScreen";
-import PasscodeConfirmScreen from "../Containers/Auth/PasscodeConfirmScreen";
+//import PasscodeConfirmScreen from "../Containers/Auth/PasscodeConfirmScreen";
 import CustomDrawerComponent from "../Components/CustomDrawer";
 import PhoneSignupScreen from "../Containers/CreateAccount/PhoneSignupScreen";
 import EmailSignupScreen from "../Containers/CreateAccount/EmailSignupScreen";
@@ -25,6 +25,7 @@ import ProfileScreen from "../Containers/Profile/ProfileScreen";
 import PrivacyPolicyScreen from "../Containers/Policy/PrivacyPolicyScreen";
 import TermsConditionsScreen from "../Containers/Policy/TermsConditionsScreen";
 import HelpScreen from "../Containers/Policy/HelpScreen";
+import PlanScreen from "../Containers/Policy/PlanScreen";
 import DisplayPicture from "../Components/DisplayPicture";
 import MenuButton from "../Components/MenuButton";
 import HomeButton from "../Components/HomeButton";
@@ -245,6 +246,26 @@ const CreateAccountStack = createStackNavigator(
   }
 );
 
+const PlanStack = createStackNavigator(
+  {
+    TermsConditions: {
+      screen: PlanScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Plans",
+        headerRight: <CloseWindowButton navigationProps={navigation} />
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
 const PrivacyPolicyStack = createStackNavigator(
   {
     PrivacyPolicy: {
@@ -324,6 +345,7 @@ const MainStack = createStackNavigator(
     DrawerStack: {
       screen: DrawerStack
     },
+    PlanStack: { screen: PlanStack },
     PrivacyPolicyStack: { screen: PrivacyPolicyStack },
     TermsConditionsStack: { screen: TermsConditionsStack }
   },

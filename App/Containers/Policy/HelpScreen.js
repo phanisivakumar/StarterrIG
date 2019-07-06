@@ -9,7 +9,10 @@ export default class PrivacyPolicyScreen extends React.Component {
           <Text>You could use "Call me" ONCE PER DAY ONLY.</Text>
           <Button
             title="Call me"
-            onPress={() => this.props.navigation.navigate("Posters")}
+            onPress={() => {
+              alert("We will reach you soon.");
+              this.props.navigation.navigate("Posters");
+            }}
           />
         </View>
       </SafeAreaView>
