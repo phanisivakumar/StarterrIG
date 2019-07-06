@@ -16,10 +16,10 @@ import Font from "../Themes/Fonts";
 
 const CustomDrawerComponent = props => (
   <SafeAreaView style={ApplicationStyles.screen.mainContainer}>
-    <View style={ApplicationStyles.screen.section}>
-      <Image source={images.logo} style={ApplicationStyles.logo} />
-      <Text>Acc# 1HC190706</Text>
-      <Text>2 Credits</Text>
+    <View style={styles.header}>
+      <Image source={images.logo} />
+      <Text style={ApplicationStyles.darkLabel}># 1HC190706</Text>
+      <Text style={ApplicationStyles.darkLabel}>Credits: 2</Text>
     </View>
     <ScrollView>
       <DrawerItems {...props} />
@@ -33,7 +33,7 @@ const CustomDrawerComponent = props => (
       <TouchableOpacity
         onPress={() => props.navigation.navigate("TermsConditionsStack")}
       >
-        <Text style={Font.style.description}>Terms and Conditions</Text>
+        <Text style={Font.style.description}>Terms & Conditions</Text>
       </TouchableOpacity>
       <Button
         style={styles.footer}
@@ -45,6 +45,7 @@ const CustomDrawerComponent = props => (
 );
 
 const styles = StyleSheet.create({
+  header: { alignItems: "center" },
   insideContainer: {
     marginBottom: 40,
     marginLeft: 15
