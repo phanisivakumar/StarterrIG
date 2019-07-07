@@ -30,12 +30,12 @@ const ApplicationStyles = {
     sectionText: {
       ...Fonts.style.normal,
       paddingVertical: Metrics.doubleBaseMargin,
-      color: Colors.snow,
+      color: Colors.coal,
       marginVertical: Metrics.smallMargin,
       textAlign: "center"
     },
     subtitle: {
-      color: Colors.snow,
+      color: Colors.coal,
       padding: Metrics.smallMargin,
       marginBottom: Metrics.smallMargin,
       marginHorizontal: Metrics.smallMargin

@@ -251,7 +251,7 @@ const PlanStack = createStackNavigator(
     TermsConditions: {
       screen: PlanScreen,
       navigationOptions: ({ navigation }) => ({
-        title: "Plans",
+        title: "Plan",
         headerRight: <CloseWindowButton navigationProps={navigation} />
       })
     }
