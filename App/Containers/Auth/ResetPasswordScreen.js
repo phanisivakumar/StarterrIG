@@ -8,7 +8,7 @@ export default class ResetPasswordScreen extends React.Component {
         <Text>Email Address:</Text>
         <Button
           title="Send OTP"
-          onPress={() => this.props.navigation.navigate("OTP")}
+          onPress={() => this.props.navigation.navigate("OTPScreen")}
         />
       </View>
     );

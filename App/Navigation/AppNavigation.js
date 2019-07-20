@@ -138,7 +138,7 @@ const AuthStack = createStackNavigator(
     SignIn: {
       screen: SignInScreen,
       navigationOptions: {
-        title: "Sign In"
+        title: "Welcome back!"
       }
     },
     ResetPassword: {
@@ -146,7 +146,31 @@ const AuthStack = createStackNavigator(
       navigationOptions: {
         title: "Reset Password"
       }
+    },
+    OTPScreen: {
+      screen: OTPScreen,
+      navigationOptions: {
+        title: "One Time Password"
+      }
     }
+    // EmailSignup: {
+    //   screen: EmailSignupScreen,
+    //   navigationOptions: {
+    //     title: "Create Account"
+    //   }
+    // },
+    // Passcode: {
+    //   screen: PasscodeScreen,
+    //   navigationOptions: {
+    //     title: "Set Passcode"
+    //   }
+    // },
+    // PhoneSignup: {
+    //   screen: PhoneSignupScreen,
+    //   navigationOptions: {
+    //     title: "Verify Phone Number"
+    //   }
+    // }
   },
   {
     defaultNavigationOptions: {
@@ -190,49 +214,6 @@ const WhoAreYouStack = createStackNavigator(
       screen: WhoAreYouScreen,
       navigationOptions: {
         title: "Who are you?"
-      }
-    }
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: colors.banner
-      },
-      headerTintColor: colors.snow
-    }
-  }
-);
-
-const CreateAccountStack = createStackNavigator(
-  {
-    EmailSignup: {
-      screen: EmailSignupScreen,
-      navigationOptions: {
-        title: "Create Account"
-      }
-    },
-    OTP: {
-      screen: OTPScreen,
-      navigationOptions: {
-        title: "One Time Password"
-      }
-    },
-    Passcode: {
-      screen: PasscodeScreen,
-      navigationOptions: {
-        title: "Set Passcode"
-      }
-    },
-    // PasscodeConfirm: {
-    //   screen: PasscodeConfirmScreen,
-    //   navigationOptions: {
-    //     title: "Confirm Passcode"
-    //   }
-    // },
-    PhoneSignup: {
-      screen: PhoneSignupScreen,
-      navigationOptions: {
-        title: "Verify Phone Number"
       }
     }
   },
@@ -355,11 +336,105 @@ const MainStack = createStackNavigator(
   }
 );
 
+const OTPStack = createStackNavigator(
+  {
+    OTPScreen: {
+      screen: OTPScreen,
+      navigationOptions: {
+        title: "One Time Password"
+      }
+    }
+  },
+  {
+    initialRouteName: "OTPScreen",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
+const PhoneSignUpStack = createStackNavigator(
+  {
+    Posters: {
+      screen: PhoneSignupScreen,
+      navigationOptions: {
+        title: "Create Account"
+      }
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
+const EmailSignUpStack = createStackNavigator(
+  {
+    Posters: {
+      screen: EmailSignupScreen,
+      navigationOptions: {
+        title: "Create Account"
+      }
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
+const CreateAccountStack = createBottomTabNavigator(
+  {
+    Email: {
+      screen: EmailSignUpStack
+    },
+    Phone: {
+      screen: PhoneSignUpStack
+    }
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === "Email") {
+          iconName = "ios-mail";
+        } else if (routeName === "Phone") {
+          iconName = "ios-call";
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return <Icon name={iconName} size={35} color={tintColor} />;
+      }
+    }),
+    tabBarOptions: {
+      style: {
+        borderTopColor: "transparent"
+      },
+      activeTintColor: colors.banner,
+      inactiveTintColor: colors.steel
+    }
+  }
+);
+
 const PrimaryNav = createSwitchNavigator(
   {
     LaunchScreen: { screen: LaunchScreen },
-    AuthStack: { screen: AuthStack },
     CreateAccountStack: { screen: CreateAccountStack },
+    OTPStack: { screen: OTPStack },
+    AuthStack: { screen: AuthStack },
     WhoAreYouStack: { screen: WhoAreYouStack },
     MainStack: { screen: MainStack }
   },

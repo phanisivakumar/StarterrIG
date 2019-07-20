@@ -1,29 +1,7 @@
-// import React from "react";
-// import { Text, View, Button } from "react-native";
-
-// export default class EmailSignupScreen extends React.Component {
-//   render() {
-//     return (
-//       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-//         <Text>Email Address:</Text>
-//         <Text>Password:</Text>
-//         <Text>Confirm Password:</Text>
-//         <Button
-//           title="Signup & Verify"
-//           onPress={() => this.props.navigation.navigate("OTP")}
-//         />
-//         <Button
-//           title="Phone Signup"
-//           onPress={() => this.props.navigation.navigate("PhoneSignup")}
-//         />
-//       </View>
-//     );
-//   }
-// }
-
 import React from "react";
 import {
   View,
+  Button,
   SafeAreaView,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -92,8 +70,12 @@ export default class EmailSignupScreen extends React.Component {
                 returnKeyType="go"
               />
               <FullButton
-                text="ok"
-                onPress={() => this.props.navigation.navigate("OTP")}
+                text="Verify"
+                onPress={() => this.props.navigation.navigate("OTPStack")}
+              />
+              <Button
+                title="SignIn"
+                onPress={() => this.props.navigation.navigate("AuthStack")}
               />
             </View>
           </TouchableWithoutFeedback>
