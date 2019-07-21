@@ -10,7 +10,17 @@ export default class CardText extends React.PureComponent {
   render() {
     return (
       <TouchableOpacity onPress={this._onPress}>
-        <Text style={styles.contentText}>
+        <Text
+          style={[
+            styles.contentText,
+            {
+              color:
+                this.props.textColor == undefined
+                  ? Colors.charcoal
+                  : this.props.textColor
+            }
+          ]}
+        >
           Think of your container as a line of people. And you are telling each
           person to stand 5 meters behind the person in front of him (marginTop:
           5). If this person is set to relative he will respect the line and
@@ -26,7 +36,6 @@ export default class CardText extends React.PureComponent {
 
 const styles = StyleSheet.create({
   contentText: {
-    fontSize: Fonts.size.small,
-    color: Colors.charcoal
+    fontSize: Fonts.size.small
   }
 });

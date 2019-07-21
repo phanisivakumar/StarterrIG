@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, Button, FlatList, ActivityIndicator } from "react-native";
 import Card from "../../Components/Card";
+import CardNotification from "../../Components/CardNotification";
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -77,7 +78,7 @@ export default class HomeScreen extends React.Component {
   // };
 
   renderHeader = () => {
-    return <Text>Notification Box</Text>;
+    return <CardNotification />;
     //return <SearchBar placeholder="Type Here..." lightTheme round />;
   };
 
@@ -99,7 +100,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{ flex: 1, marginTop: 10 }}>
         {/* <Text>Posters!</Text>
         <Button
           title="Go to Manage"

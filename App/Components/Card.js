@@ -5,7 +5,7 @@ import { Colors, Metrics, Fonts } from "../Themes";
 import ApplicationStyles from "../Themes/ApplicationStyles";
 import CardJobPublic from "./CardJobPublic";
 import CardText from "./CardText";
-import CardVideo from "./CardVideo";
+// import CardVideo from "./CardVideo";
 
 export default class Card extends React.PureComponent {
   _onPress = () => {
