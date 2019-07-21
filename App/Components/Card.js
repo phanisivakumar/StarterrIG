@@ -7,7 +7,7 @@ import CardJobPublic from "./CardJobPublic";
 import CardText from "./CardText";
 import CardVideo from "./CardVideo";
 
-export default class ListItem extends React.PureComponent {
+export default class Card extends React.PureComponent {
   _onPress = () => {
     this.props.onPressItem(this.props.id);
   };

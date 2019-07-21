@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, Button, FlatList, ActivityIndicator } from "react-native";
-import ListItem from "../../Components/ListItem";
+import Card from "../../Components/Card";
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -112,7 +112,7 @@ export default class HomeScreen extends React.Component {
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (
-            <ListItem
+            <Card
               title={`${item.name.first} ${item.name.last}`}
               subtitle={item.email}
               //avatar={{ uri: item.picture.thumbnail }}
