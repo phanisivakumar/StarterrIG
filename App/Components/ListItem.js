@@ -12,16 +12,17 @@ export default class ListItem extends React.PureComponent {
     this.props.onPressItem(this.props.id);
   };
 
-  random = Math.floor(Math.random() * 3) + 1;
+  random = Math.floor(Math.random() * 2) + 1;
 
   randomElement = () => {
     if (this.random === 1) {
       return <CardText />;
     } else if (this.random === 2) {
       return <CardJobPublic />;
-    } else if (this.random === 3) {
-      return <CardVideo />;
     }
+    // else if (this.random === 3) {
+    //   return <CardVideo />;
+    // }
   };
 
   randomTag = () => {
@@ -29,9 +30,10 @@ export default class ListItem extends React.PureComponent {
       return "News";
     } else if (this.random === 2) {
       return "Job";
-    } else {
-      return "Training";
     }
+    // else {
+    //   return "Training";
+    // }
   };
 
   render() {
