@@ -1,7 +1,14 @@
 import React from "react";
-import { Text, View, Button, FlatList, ActivityIndicator } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator
+} from "react-native";
 import Card from "../../Components/Card";
 import CardNotification from "../../Components/CardNotification";
+import ApplicationStyles from "../../Themes/ApplicationStyles";
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -100,7 +107,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, marginTop: 10 }}>
+      <View style={ApplicationStyles.screen.container}>
         {/* <Text>Posters!</Text>
         <Button
           title="Go to Manage"
@@ -133,3 +140,11 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     marginTop: 10,
+//     backgroundColor: "#FFF"
+//   }
+// });

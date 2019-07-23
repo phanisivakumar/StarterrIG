@@ -46,9 +46,9 @@ export default class CardNotification extends React.PureComponent {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: Colors.banner,
-    marginBottom: 10,
-    marginLeft: "2%",
-    width: "96%"
+    marginBottom: 15,
+    marginLeft: "4%",
+    width: "92%"
   },
   cardShadow: {
     shadowColor: "#000000",

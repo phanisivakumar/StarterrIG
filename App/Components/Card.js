@@ -90,14 +90,14 @@ export default class Card extends React.PureComponent {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: "#FFF",
-    marginBottom: 10,
-    marginLeft: "2%",
-    width: "96%"
+    marginBottom: 15,
+    marginLeft: "4%",
+    width: "92%"
   },
   cardShadow: {
     shadowColor: "#000000",
     shadowOpacity: 0.2,
-    shadowRadius: 1,
+    shadowRadius: 2,
     shadowOffset: {
       width: 0,
       height: 1
@@ -112,7 +112,8 @@ const styles = StyleSheet.create({
   //   },
   cardHeader: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    marginTop: 5
     // borderColor: "black",
     // borderWidth: 1
   },
@@ -127,7 +128,8 @@ const styles = StyleSheet.create({
     // color: Colors.gray,
     //paddingHorizontal: 10,
     height: 100,
-    padding: 15
+    paddingHorizontal: 15,
+    paddingTop: 10
   },
   cardFooter: {
     flexDirection: "row",
