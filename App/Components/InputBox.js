@@ -17,6 +17,7 @@ ExamplesRegistry.addComponentExample("Full Button", () => (
 export default class InputBox extends Component {
   static propTypes = {
     label: PropTypes.string,
+    placeholder: PropTypes.string,
     maxLength: PropTypes.number,
     onChangeText: PropTypes.func,
     styles: PropTypes.object,
@@ -34,6 +35,7 @@ export default class InputBox extends Component {
         </Text>
         <TextInput
           style={styles.inputBox}
+          placeholder={this.props.placeholder}
           maxLength={this.props.maxLength}
           onChangeText={this.props.onChangeText}
           keyboardType={this.props.keyboardType}
