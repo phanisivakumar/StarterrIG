@@ -1,20 +1,35 @@
 import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Colors, Fonts } from "../Themes";
-import Icon from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class CardJobHelper extends React.PureComponent {
   _onPress = () => {
     this.props.onPressItem(this.props.id);
   };
 
-  random = Math.floor(Math.random() * 2) + 1;
+  statuses = ["Applied", "Offer", "Confirm", "Try next time"];
+  random = Math.floor(Math.random() * 4);
 
   randomTag = () => {
     if (this.random === 1) {
       return;
     } else if (this.random === 2) {
       return <Text style={[styles.tagBox, styles.tag]}>Closed</Text>;
+    }
+  };
+
+  randomStatus = () => {
+    return (
+      <Text style={[styles.statusTagBox, styles.statusText]}>
+        {this.statuses[this.random]}
+      </Text>
+    );
+  };
+
+  randomAlert = () => {
+    if (this.random % 2 === 0) {
+      return <Icon name="circle" style={[styles.alert]} />;
     }
   };
 
@@ -42,27 +57,9 @@ export default class CardJobHelper extends React.PureComponent {
               </View>
             </View>
           </TouchableOpacity>
-          <View style={[styles.row, styles.statusText]}>
-            <View>
-              <Text style={styles.subTitle}>Applied</Text>
-            </View>
-            <View>
-              <Text style={[styles.subTitle]}>Offer</Text>
-            </View>
-            <View>
-              <Text style={[styles.subTitle]}>Confirm</Text>
-            </View>
-          </View>
-          <View style={[styles.row, styles.statusDots]}>
-            <View>
-              <Icon name="circle" style={styles.status} />
-            </View>
-            <View>
-              <Icon name="circle" style={styles.status} />
-            </View>
-            <View>
-              <Icon name="circle" style={styles.status} />
-            </View>
+          <View style={[styles.row, styles.statusBar]}>
+            <View>{this.randomStatus()}</View>
+            <View>{this.randomAlert()}</View>
           </View>
         </View>
       </View>
@@ -120,22 +117,33 @@ const styles = StyleSheet.create({
     color: Colors.charcoal,
     marginTop: 5
   },
-  statusText: {
-    paddingHorizontal: 15,
-    marginTop: 15
-  },
-  statusDots: { marginTop: 5, marginBottom: 15, marginHorizontal: 30 },
-  status: {
+  alert: {
     fontSize: 12,
-    color: Colors.banner
+    color: Colors.bloodOrange
   },
   tagBox: {
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: Colors.fire,
+    padding: 2
+  },
+  tag: {
+    fontSize: 12,
+    color: Colors.fire
+  },
+  statusBar: {
+    marginTop: 5,
+    marginBottom: 10,
+    marginHorizontal: 10,
+    alignItems: "flex-end"
+  },
+  statusTagBox: {
     borderWidth: 1,
     borderRadius: 2,
     borderColor: Colors.banner,
     padding: 2
   },
-  tag: {
+  statusText: {
     fontSize: 12,
     color: Colors.banner
   }
