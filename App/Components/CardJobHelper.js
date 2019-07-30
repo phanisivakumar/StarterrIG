@@ -29,7 +29,13 @@ export default class CardJobHelper extends React.PureComponent {
 
   randomAlert = () => {
     if (this.random % 2 === 0) {
-      return <Icon name="circle" style={[styles.alert]} />;
+      return (
+        <TouchableOpacity
+          onPress={() => this.props.navigationProps.navigate("Chat")}
+        >
+          <Icon name="circle" style={[styles.alert]} />
+        </TouchableOpacity>
+      );
     }
   };
 

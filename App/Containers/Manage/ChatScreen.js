@@ -1,9 +1,8 @@
 import React from "react";
 import { Text, View, Button, FlatList, ActivityIndicator } from "react-native";
-import CardJobHelper from "../../Components/CardJobHelper";
 import ApplicationStyles from "../../Themes/ApplicationStyles";
 
-export default class ManageScreen extends React.Component {
+export default class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -101,25 +100,10 @@ export default class ManageScreen extends React.Component {
   render() {
     return (
       <View style={ApplicationStyles.screen.container}>
-        {/* <Text>Posters!</Text>
-        <Button
-          title="Go to Manage"
-          onPress={() => this.props.navigation.navigate("Manage")}
-        />
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate("Details")}
-        /> */}
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (
-            <CardJobHelper
-              title={`${item.name.first} ${item.name.last}`}
-              subtitle={item.email}
-              navigationProps={{ ...this.props.navigation }}
-              //avatar={{ uri: item.picture.thumbnail }}
-              //containerStyle={{ borderBottomWidth: 0 }}
-            />
+            <Text>{`${item.name.first} ${item.name.last}`}</Text>
           )}
           keyExtractor={item => item.email}
           //ItemSeparatorComponent={this.renderSeparator}
@@ -134,24 +118,3 @@ export default class ManageScreen extends React.Component {
     );
   }
 }
-
-// import React from "react";
-// import { Text, View, Button } from "react-native";
-
-// export default class ManageScreen extends React.Component {
-//   render() {
-//     return (
-//       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-//         <Text>Manage!</Text>
-//         <Button
-//           title="Go to Posters"
-//           onPress={() => this.props.navigation.navigate("Posters")}
-//         />
-//         <Button
-//           title="Go to Details"
-//           onPress={() => this.props.navigation.navigate("Details")}
-//         />
-//       </View>
-//     );
-//   }
-// }

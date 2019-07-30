@@ -12,6 +12,7 @@ import LaunchScreen from "../Containers/LaunchScreen";
 import HomeScreen from "../Containers/Home/HomeScreen";
 import DetailsScreen from "../Containers/Home/DetailsScreen";
 import ManageScreen from "../Containers/Manage/ManageScreen";
+import ChatScreen from "../Containers/Manage/ChatScreen";
 import SignInScreen from "../Containers/Auth/SignInScreen";
 import ResetPasswordScreen from "../Containers/Auth/ResetPasswordScreen";
 import PasscodeScreen from "../Containers/Auth/PasscodeScreen";
@@ -42,9 +43,6 @@ const HomeStack = createStackNavigator(
         headerLeft: <MenuButton navigationProps={navigation} />,
         headerRight: <DisplayPicture navigationProps={navigation} />
       })
-    },
-    Details: {
-      screen: DetailsScreen
     }
   },
   {
@@ -67,8 +65,11 @@ const ManageStack = createStackNavigator(
         headerRight: <DisplayPicture navigationProps={navigation} />
       })
     },
-    Details: {
-      screen: DetailsScreen
+    Chat: {
+      screen: ChatScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Messages"
+      })
     }
   },
   {
@@ -321,6 +322,26 @@ const DrawerStack = createDrawerNavigator(
   }
 );
 
+const ChatStack = createStackNavigator(
+  {
+    Chat: {
+      screen: ChatScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Messages",
+        headerRight: <CloseWindowButton navigationProps={navigation} />
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
 const MainStack = createStackNavigator(
   {
     DrawerStack: {
@@ -328,7 +349,8 @@ const MainStack = createStackNavigator(
     },
     PlanStack: { screen: PlanStack },
     PrivacyPolicyStack: { screen: PrivacyPolicyStack },
-    TermsConditionsStack: { screen: TermsConditionsStack }
+    TermsConditionsStack: { screen: TermsConditionsStack },
+    ChatStack: { screen: ChatStack }
   },
   {
     mode: "modal",
