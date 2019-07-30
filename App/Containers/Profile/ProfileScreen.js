@@ -4,7 +4,8 @@ import {
   View,
   KeyboardAvoidingView,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Button
 } from "react-native";
 import ProfilePicture from "../../Components/ProfilePicture";
 import ApplicationStyles from "../../Themes/ApplicationStyles";
@@ -21,6 +22,14 @@ export default class ProfileScreen extends React.Component {
             <View>
               <View style={{ alignItems: "center" }}>
                 <ProfilePicture />
+              </View>
+              <View style={{ alignItems: "center" }}>
+                <Button
+                  title="Job Seeker"
+                  onPress={() =>
+                    this.props.navigation.navigate("WhoAreYouStack")
+                  }
+                />
               </View>
               <View>
                 <InputBox
