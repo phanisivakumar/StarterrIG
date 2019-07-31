@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Colors, Fonts } from "../Themes";
 
-export default class CardJobPublic extends React.PureComponent {
+export default class CardJobPoster extends React.PureComponent {
   _onPress = () => {
     this.props.onPressItem(this.props.id);
   };

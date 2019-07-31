@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import { Colors, Metrics, Fonts } from "../Themes";
 import ApplicationStyles from "../Themes/ApplicationStyles";
-import CardJobPublic from "./CardJobPublic";
+import CardJobPoster from "./CardJobPoster";
 import CardText from "./CardText";
 // import CardVideo from "./CardVideo";
 
@@ -18,7 +18,7 @@ export default class Card extends React.PureComponent {
     if (this.random === 1) {
       return <CardText />;
     } else if (this.random === 2) {
-      return <CardJobPublic />;
+      return <CardJobPoster />;
     }
     // else if (this.random === 3) {
     //   return <CardVideo />;

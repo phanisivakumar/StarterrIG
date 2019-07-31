@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, Button, FlatList, ActivityIndicator } from "react-native";
 import ApplicationStyles from "../../Themes/ApplicationStyles";
+import CardChat from "../../Components/CardChat";
 
 export default class ChatScreen extends React.Component {
   constructor(props) {
@@ -103,7 +104,11 @@ export default class ChatScreen extends React.Component {
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (
-            <Text>{`${item.name.first} ${item.name.last}`}</Text>
+            <CardChat
+              message={item.email}
+              //avatar={{ uri: item.picture.thumbnail }}
+              //containerStyle={{ borderBottomWidth: 0 }}
+            />
           )}
           keyExtractor={item => item.email}
           //ItemSeparatorComponent={this.renderSeparator}

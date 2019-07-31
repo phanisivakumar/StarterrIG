@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, Button, FlatList, ActivityIndicator } from "react-native";
-import CardJobHelper from "../../Components/CardJobHelper";
+import CardJobManage from "../../Components/CardJobManage";
 import ApplicationStyles from "../../Themes/ApplicationStyles";
 
 export default class ManageScreen extends React.Component {
@@ -113,7 +113,7 @@ export default class ManageScreen extends React.Component {
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (
-            <CardJobHelper
+            <CardJobManage
               title={`${item.name.first} ${item.name.last}`}
               subtitle={item.email}
               navigationProps={{ ...this.props.navigation }}

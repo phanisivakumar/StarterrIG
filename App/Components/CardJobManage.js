@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Colors, Fonts } from "../Themes";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-export default class CardJobHelper extends React.PureComponent {
+export default class CardJobManage extends React.PureComponent {
   _onPress = () => {
     this.props.onPressItem(this.props.id);
   };
