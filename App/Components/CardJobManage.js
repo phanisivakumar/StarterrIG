@@ -4,9 +4,9 @@ import { Colors, Fonts } from "../Themes";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class CardJobManage extends React.PureComponent {
-  _onPress = () => {
-    this.props.onPressItem(this.props.id);
-  };
+  // _onPress = () => {
+  //   this.props.onPressItem(this.props.id);
+  // };
 
   statuses = ["Applied", "Offer", "Confirm", "Try next time"];
   random = Math.floor(Math.random() * 4);
@@ -31,7 +31,7 @@ export default class CardJobManage extends React.PureComponent {
     if (this.random % 2 === 0) {
       return (
         <TouchableOpacity
-          onPress={() => this.props.navigationProps.navigate("Chat")}
+          onPress={() => this.props.navigationProps.navigate("ChatStack")}
         >
           <Icon name="circle" style={[styles.alert]} />
         </TouchableOpacity>

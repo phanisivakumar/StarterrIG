@@ -9,6 +9,7 @@ import {
 import Card from "../../Components/Card";
 import CardNotification from "../../Components/CardNotification";
 import ApplicationStyles from "../../Themes/ApplicationStyles";
+import Chip from "../../Components/Chip";
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -117,6 +118,11 @@ export default class HomeScreen extends React.Component {
           title="Go to Details"
           onPress={() => this.props.navigation.navigate("Details")}
         /> */}
+        <Chip
+          text="Add Post"
+          styles="{alignItems: 'center'}"
+          onPress={() => this.props.navigation.navigate("PrivacyPolicyStack")}
+        />
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (

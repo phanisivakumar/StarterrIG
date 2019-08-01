@@ -64,12 +64,6 @@ const ManageStack = createStackNavigator(
         headerLeft: <MenuButton navigationProps={navigation} />,
         headerRight: <DisplayPicture navigationProps={navigation} />
       })
-    },
-    Chat: {
-      screen: ChatScreen,
-      navigationOptions: ({ navigation }) => ({
-        title: "Messages"
-      })
     }
   },
   {
