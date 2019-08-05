@@ -9,8 +9,6 @@ import {
 import Card from "../../Components/Card";
 import CardNotification from "../../Components/CardNotification";
 import ApplicationStyles from "../../Themes/ApplicationStyles";
-import Chip from "../../Components/Chip";
-import FloatActionButton from "../../Components/FloatActionButton";
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -110,16 +108,6 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={ApplicationStyles.screen.container}>
-        <Chip
-          text="Add Post"
-          styles="{alignItems: 'center'}"
-          onPress={() => this.props.navigation.navigate("PrivacyPolicyStack")}
-        />
-        <FloatActionButton
-          featherIconName="plus"
-          styles={styles.fabPosition}
-          onPress={() => this.props.navigation.navigate("PrivacyPolicyStack")}
-        />
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (
@@ -144,11 +132,11 @@ export default class HomeScreen extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  fabPosition: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    bottom: 0
-  }
-});
+// const styles = StyleSheet.create({
+//   fabPosition: {
+//     position: "absolute",
+//     margin: 16,
+//     right: 0,
+//     bottom: 0
+//   }
+// });

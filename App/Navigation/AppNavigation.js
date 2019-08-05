@@ -10,8 +10,11 @@ import Icon from "react-native-vector-icons/Ionicons";
 // import styles from "./Styles/NavigationStyles";
 import LaunchScreen from "../Containers/LaunchScreen";
 import HomeScreen from "../Containers/Home/HomeScreen";
-import DetailsScreen from "../Containers/Home/DetailsScreen";
 import ManageScreen from "../Containers/Manage/ManageScreen";
+import CreatePostScreen from "../Containers/Manage/CreatePostScreen";
+import RequirementScreen from "../Containers/Manage/RequirementScreen";
+import PostPreviewScreen from "../Containers/Manage/PostPreviewScreen";
+import AddressEntryScreen from "../Containers/Manage/AddressEntryScreen";
 import ChatScreen from "../Containers/Manage/ChatScreen";
 import SignInScreen from "../Containers/Auth/SignInScreen";
 import ResetPasswordScreen from "../Containers/Auth/ResetPasswordScreen";
@@ -30,8 +33,10 @@ import PlanScreen from "../Containers/Policy/PlanScreen";
 import DisplayPicture from "../Components/DisplayPicture";
 import MenuButton from "../Components/MenuButton";
 import HomeButton from "../Components/HomeButton";
+import FloatActionButton from "../Components/FloatActionButton";
 import CloseWindowButton from "../Components/CloseWindowButton";
 import colors from "../Themes/Colors";
+import { Fonts } from "../Themes";
 
 // Manifest of possible screens
 const HomeStack = createStackNavigator(
@@ -62,7 +67,20 @@ const ManageStack = createStackNavigator(
       navigationOptions: ({ navigation }) => ({
         title: "Manage",
         headerLeft: <MenuButton navigationProps={navigation} />,
-        headerRight: <DisplayPicture navigationProps={navigation} />
+        headerRight: (
+          <FloatActionButton
+            featherIconName="plus"
+            onPress={() => navigation.navigate("AddPostStack")}
+            styles={{
+              width: 26,
+              height: 26,
+              borderRadius: 26 / 2,
+              marginRight: 10,
+              marginBottom: 5
+            }}
+            insideStyle={{ fontSize: Fonts.size.h5 }}
+          />
+        )
       })
     }
   },
@@ -303,6 +321,61 @@ const HelpStack = createStackNavigator(
     }
   }
 );
+
+const AddressEntryStack = createStackNavigator(
+  {
+    AddressEntry: {
+      screen: AddressEntryScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Address",
+        headerRight: <CloseWindowButton navigationProps={navigation} />
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
+const AddPostStack = createStackNavigator(
+  {
+    CreatePost: {
+      screen: CreatePostScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Fill Job Details",
+        headerRight: <CloseWindowButton navigationProps={navigation} />
+      })
+    },
+    Requirement: {
+      screen: RequirementScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Add Requirements"
+        //headerRight: <CloseWindowButton navigationProps={navigation} />
+      })
+    },
+    PostPreview: {
+      screen: PostPreviewScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Preview"
+        //headerRight: <CloseWindowButton navigationProps={navigation} />
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
 // drawer stack
 const DrawerStack = createDrawerNavigator(
   {
@@ -344,7 +417,9 @@ const MainStack = createStackNavigator(
     PlanStack: { screen: PlanStack },
     PrivacyPolicyStack: { screen: PrivacyPolicyStack },
     TermsConditionsStack: { screen: TermsConditionsStack },
-    ChatStack: { screen: ChatStack }
+    ChatStack: { screen: ChatStack },
+    AddPostStack: { screen: AddPostStack },
+    AddressEntryStack: { screen: AddressEntryStack }
   },
   {
     mode: "modal",
