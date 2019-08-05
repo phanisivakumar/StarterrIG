@@ -15,6 +15,7 @@ import CreatePostScreen from "../Containers/Manage/CreatePostScreen";
 import RequirementScreen from "../Containers/Manage/RequirementScreen";
 import PostPreviewScreen from "../Containers/Manage/PostPreviewScreen";
 import AddressEntryScreen from "../Containers/Manage/AddressEntryScreen";
+import JobStatusScreen from "../Containers/Manage/JobStatusScreen";
 import ChatScreen from "../Containers/Manage/ChatScreen";
 import SignInScreen from "../Containers/Auth/SignInScreen";
 import ResetPasswordScreen from "../Containers/Auth/ResetPasswordScreen";
@@ -409,6 +410,26 @@ const ChatStack = createStackNavigator(
   }
 );
 
+const JobStatusStack = createStackNavigator(
+  {
+    JobStatus: {
+      screen: JobStatusScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Status",
+        headerRight: <CloseWindowButton navigationProps={navigation} />
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.banner
+      },
+      headerTintColor: colors.snow
+    }
+  }
+);
+
 const MainStack = createStackNavigator(
   {
     DrawerStack: {
@@ -419,7 +440,8 @@ const MainStack = createStackNavigator(
     TermsConditionsStack: { screen: TermsConditionsStack },
     ChatStack: { screen: ChatStack },
     AddPostStack: { screen: AddPostStack },
-    AddressEntryStack: { screen: AddressEntryStack }
+    AddressEntryStack: { screen: AddressEntryStack },
+    JobStatusStack: { screen: JobStatusStack }
   },
   {
     mode: "modal",

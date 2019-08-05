@@ -21,9 +21,13 @@ export default class CardJobManage extends React.PureComponent {
 
   randomStatus = () => {
     return (
-      <Text style={[styles.statusTagBox, styles.statusText]}>
-        {this.statuses[this.random]}
-      </Text>
+      <TouchableOpacity
+        onPress={() => this.props.navigationProps.navigate("JobStatusStack")}
+      >
+        <Text style={[styles.statusTagBox, styles.statusText]}>
+          {this.statuses[this.random]}
+        </Text>
+      </TouchableOpacity>
     );
   };
 
