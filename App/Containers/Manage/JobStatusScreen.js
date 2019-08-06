@@ -9,25 +9,14 @@ import {
   Keyboard,
   StyleSheet
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import ApplicationStyles from "../../Themes/ApplicationStyles";
-import InputBox from "../../Components/InputBox";
-import { Metrics, Colors, Fonts } from "../../Themes";
+import Icon from "react-native-vector-icons/FontAwesome";
 import FullButton from "../../Components/FullButton";
 import Chip from "../../Components/Chip";
+import { Colors, Fonts } from "../../Themes";
 
 export default class JobStatusScreen extends React.Component {
-  state = {
-    screenHeight: Metrics.screenHeight
-  };
-
-  onContentSizeChange = (contentWidth, contentHeight) => {
-    this.setState({ screenHeight: contentHeight + 125 });
-  };
-
   render() {
-    const scrollEnabled = this.state.screenHeight > Metrics.screenHeight;
-
     return (
       <SafeAreaView style={ApplicationStyles.screen.mainContainer}>
         <KeyboardAvoidingView
@@ -35,31 +24,70 @@ export default class JobStatusScreen extends React.Component {
           style={ApplicationStyles.screen.mainContainer}
         >
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <ScrollView
-              style={{ flex: 1 }}
-              contentContainerStyle={styles.scrollView}
-              scrollEnabled={scrollEnabled}
-              onContentSizeChange={this.onContentSizeChange}
-            >
+            <View>
               <View style={styles.container}>
-                <View style={styles.insideContainer}>
-                  <Chip text="Applied" />
-                  <Chip text="Schedule Interview" />
-                  <Chip text="Job Offer" />
-                  <Chip text="Accept Offer" />
-                  <Chip text="Confirm Job" />
-                  <View style={[styles.viewStyle, styles.comfortView]}>
-                    <FullButton
-                      text="Save"
-                      onPress={() =>
-                        this.props.navigation.navigate("DrawerStack")
-                      }
-                      styles={styles.childStyle}
+                <View style={styles.rowStyle}>
+                  <View style={styles.childStyle}>
+                    <Icon name="circle" style={[styles.active]} />
+                    <Chip text="Applied" styles={styles.activeStatus} />
+                  </View>
+                  <Text>01-Mar-19</Text>
+                </View>
+                <View style={styles.rowStyle}>
+                  <View style={styles.childStyle}>
+                    <Icon name="circle" style={[styles.active]} />
+                    <Chip
+                      text="Schedule Interview"
+                      styles={styles.activeStatus}
+                      onPress={() => {
+                        alert("Open Calendar");
+                      }}
                     />
                   </View>
+                  <Text>02-Mar-19</Text>
+                </View>
+                <View style={styles.rowStyle}>
+                  <View style={styles.childStyle}>
+                    <Icon name="circle" style={[styles.inActive]} />
+                    <Chip
+                      text="Job Offer"
+                      onPress={() => {
+                        alert("Confirmation");
+                      }}
+                    />
+                  </View>
+                  <Text />
+                </View>
+                <View style={styles.rowStyle}>
+                  <View style={styles.childStyle}>
+                    <Icon name="circle" style={[styles.inActive]} />
+                    <Chip
+                      text="Accept Offer"
+                      onPress={() => {
+                        alert("Confirmation");
+                      }}
+                    />
+                  </View>
+                  <Text />
+                </View>
+                <View style={styles.rowStyle}>
+                  <View style={styles.childStyle}>
+                    <Icon name="circle" style={[styles.inActive]} />
+                    <Chip
+                      text="Confirm Job"
+                      onPress={() => {
+                        alert("Confirmation");
+                      }}
+                    />
+                  </View>
+                  <Text />
                 </View>
               </View>
-            </ScrollView>
+              <FullButton
+                text="Save"
+                onPress={() => this.props.navigation.navigate("DrawerStack")}
+              />
+            </View>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
       </SafeAreaView>
@@ -68,44 +96,27 @@ export default class JobStatusScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    flexGrow: 1
-  },
   container: {
-    flexGrow: 1,
+    marginHorizontal: "4%"
+  },
+  rowStyle: {
+    flexDirection: "row",
     justifyContent: "space-between",
-    marginHorizontal: "4%"
-    //flexDirection: "column"
-  },
-  insideContainer: {
-    flexDirection: "column"
-  },
-  viewStyle: {
-    flex: 5,
-    flexDirection: "column",
-    marginHorizontal: "4%"
+    alignItems: "center"
   },
   childStyle: {
-    marginVertical: "4%"
+    flexDirection: "row",
+    alignItems: "center"
   },
-  inputLabel: {
-    color: Colors.charcoal,
-    fontSize: Fonts.size.small,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "left",
-    letterSpacing: 1,
-    opacity: 0.8,
-    textTransform: "uppercase",
-    alignSelf: "flex-start",
-    marginTop: "4%"
+  activeStatus: {
+    borderColor: Colors.banner
   },
-  comfortView: {
-    height: 325,
-    minHeight: 325
+  active: {
+    fontSize: Fonts.size.medium,
+    color: Colors.banner
   },
-  blockView: {
-    height: 95,
-    maxHeight: 95
+  inActive: {
+    fontSize: Fonts.size.medium,
+    color: Colors.lightgray
   }
 });
